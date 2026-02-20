@@ -1,11 +1,25 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-export default function App(){
+import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import Shop from "./pages/Shop";
+import Product from "./pages/Product";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+
+export default function App() {
   return (
-    <>
-      <Navbar/>
-      <Hero/>
-    </>
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
