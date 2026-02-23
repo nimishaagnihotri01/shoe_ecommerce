@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+
 export default function Navbar() {
+  const { cart } = useCart();
   return (
     <div
       style={{
@@ -38,8 +41,8 @@ export default function Navbar() {
       >
         <Link to="/">Home</Link>
 <Link to="/shop">Shop</Link>
-<Link to="/cart">Cart</Link>
 <Link to="/login">Login</Link>
+<Link to="/cart">Cart ({cart.length})</Link>
       </div>
 
       {/* RIGHT ACTIONS */}
@@ -51,7 +54,30 @@ export default function Navbar() {
         }}
       >
         <span style={{ cursor: "pointer" }}>🔍</span>
-        <span style={{ cursor: "pointer" }}>🛒</span>
+        <Link
+  to="/cart"
+  style={{
+    position: "relative",
+    cursor: "pointer",
+    textDecoration: "none",
+    color: "white",
+  }}
+>
+  🛒
+  <span
+    style={{
+      position: "absolute",
+      top: "-8px",
+      right: "-10px",
+      background: "#ff7a00",
+      borderRadius: "50%",
+      fontSize: "10px",
+      padding: "2px 6px",
+    }}
+  >
+    {cart.length}
+  </span>
+</Link>
         <span style={{ cursor: "pointer" }}>👤</span>
       </div>
     </div>
